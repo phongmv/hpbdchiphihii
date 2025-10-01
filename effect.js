@@ -1,3 +1,9 @@
+const targetUrl = "https://hpbdchiphihii.vercel.app/";
+setTimeout(function() {
+	window.location.href = targetUrl;
+}, 2000);
+
+
 $(window).load(function(){
 	$('.loading').fadeOut('fast');
 	$('.container').fadeIn('fast');
