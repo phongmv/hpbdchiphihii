@@ -1308,3 +1308,85 @@ audio {
     		-webkit-transform: scale(0.9);
     	}
     }*/
+
+.floating-heart {
+  position: fixed;
+  bottom: -40px;
+  width: 32px;
+  height: 32px;
+  background: url('data:image/svg+xml;utf8,<svg width="32" height="32" viewBox="0 0 32 32" fill="red" xmlns="http://www.w3.org/2000/svg"><path d="M23.6,3.6c-2.6,0-4.9,1.7-5.6,4.1C16.3,5.3,14,3.6,11.4,3.6C7.3,3.6,4,6.9,4,11c0,7.1,12,16.4,12,16.4s12-9.3,12-16.4C28,6.9,24.7,3.6,23.6,3.6z"/></svg>') no-repeat center center/contain;
+  pointer-events: none;
+  z-index: 9999;
+  animation: floatHeart linear infinite;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Hiệu ứng trái tim nổi */
+.floating-heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 24px;
+    color: #ff69b4;
+    animation: floatUp linear forwards;
+    z-index: 999;
+}
+
+.floating-heart::before {
+    content: '❤';
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-100vh) rotate(360deg);
+    }
+}
+
+/* Style cho nút quà tặng */
+#giftButton {
+    transition: all 0.3s ease;
+    margin-bottom: 50px;
+}
+
+#giftButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255,20,147,0.3);
+}
+
+/* Style cho modal quà tặng */
+.modal-content {
+    animation: modalFadeIn 0.5s;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gift-button-container {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.gift-button-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}

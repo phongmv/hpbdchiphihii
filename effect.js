@@ -174,25 +174,65 @@ $('document').ready(function(){
 
 		function msgLoop (i) {
 			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
-			i=i+1;
-			$("p:nth-child("+i+")").fadeIn('slow').delay(1000);
-			if(i==50){
-				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
-					$('.cake').fadeIn('fast');
-				});
-				
-			}
-			else{
-				msgLoop(i);
-			}			
-
-		});
+				i=i+1;
+				$("p:nth-child("+i+")").fadeIn('slow').delay(1000);
+				if(i==50){
+					$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
+						$('.cake').fadeIn('fast');
+					});
+				}
+				else if(i==11) { // Sau khi hiển thị lời chúc cuối cùng
+					setTimeout(function() {
+                        $('.gift-button-container').addClass('show');
+                        $('#giftButton').fadeIn('slow');
+                    }, 1000);
+				}
+				else{
+					msgLoop(i);
+				}
+			});
 			// body...
 		}
 		
 		msgLoop(0);
 		
 	});
+	// Romantic floating hearts effect
+    function createHeart() {
+        const heart = $('<div class="floating-heart"></div>');
+        heart.css({
+            left: Math.random() * 100 + 'vw',
+            animationDuration: (3 + Math.random() * 2) + 's',
+            opacity: 0.7 + Math.random() * 0.3
+        });
+        $('body').append(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 600);
+
+	// Xử lý sự kiện cho nút quà tặng
+    $(document).ready(function() {
+        // Thêm hiệu ứng hover cho nút
+        $('#giftButton').hover(
+            function() {
+                $(this).css('transform', 'scale(1.1)');
+                $(this).css('transition', 'all 0.3s ease');
+            },
+            function() {
+                $(this).css('transform', 'scale(1)');
+            }
+        );
+
+        // Xử lý sự kiện click
+        $('#giftButton').click(function() {
+            $('#giftModal').modal('show');
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        });
+    });
 });
 
 
